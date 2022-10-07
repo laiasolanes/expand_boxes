@@ -1,57 +1,90 @@
 body {
   font-family: sans-serif;
+  margin: 0;
 }
+
 .section__expand-boxes {
   background: silver;
-}
-.wrapper__boxes {
-  display: flex;
-  height: 500px;
-  cursor: pointer;
-}
-.expand__box {
-  border: 1px solid white;
-  flex: 1;
-  transition: flex 0.5s;
-  transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
-  position: relative;
-  overflow: hidden;
 
-  img {
-    position: absolute;
-    width: auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0.8;
-    transition: opacity 0.4s ease-in-out;
+  .wrapper__boxes {
+    display: flex;
+    flex-direction: column;
+    min-height: 50vh;
+    cursor: pointer;
+
+    @media (min-width: 992px) {
+      flex-direction: row;
+    }
   }
-}
-.expand__box:hover {
-  flex: 1.5;
 
-  img {
-    opacity: 1;
+  .expand__box {
+    width: 100%;
+    min-height: 9rem;
+    transition: width 0.5s ease-in-out;
+    transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
+    position: relative;
+    overflow: hidden;
+
+    @media (min-width: 992) {
+      width: 25%;
+      height: auto;
+
+      &:hover {
+        img {
+          opacity: 1;
+        }
+  
+        .box__content {
+          transform: none;
+          opacity: 1;
+        }
+      }
+    }
+
+    img {
+      position: absolute;
+      width: auto;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.8;
+      transition: all 0.2s ease-in-out;
+    }
+
+    &:hover {
+      img {
+        opacity: 1;
+      }
+
+      .box__content {
+        opacity: 1;
+
+        @media (min-width: 992px) {
+          transform: none;
+          opacity: 1;
+        }
+      }
+    }
   }
-}
-.box__content {
-  position: absolute;
-  bottom: 0;
-  transform: translatey(200%);
-  opacity: 0;
-  transition: transform 0.4s ease-in-out 0.2s;
-  color: white;
-  padding: 2rem;
-  background-image: linear-gradient(
-    to bottom,
-    rgba(62, 58, 59, 0),
-    rgba(62, 58, 59, 0.8) 100%
-  );
-  transition-delay: 250ms;
-  transition-property: opacity;
-}
 
-.expand__box:hover > .box__content {
-  transform: translatey(0);
-  opacity: 1;
+  .box__content {
+    color: white;
+    padding: 2rem;
+    background-image: linear-gradient(to bottom, rgba(62, 58, 59, 0), rgba(62, 58, 59, 0.8) 100%);
+    position: relative;
+    bottom: 0;
+    height: auto;
+    opacity: 0.5;
+    transform: translatey(0%);
+    transition: transform 0.4s ease-in-out, opacity 0.15s ease;
+    transition-delay: 250ms;
+    transition-property: opacity;
+
+    @media (min-width: 992px) {
+      position: absolute;
+      opacity: 0;
+      transform: translatey(100%);
+    }
+
+  }
 }
