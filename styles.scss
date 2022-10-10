@@ -4,16 +4,15 @@ body {
 }
 
 .section__expand-boxes {
-  background: silver;
-
   .wrapper__boxes {
     display: flex;
     flex-direction: column;
-    min-height: 50vh;
+    min-height: auto;
     cursor: pointer;
 
     @media (min-width: 992px) {
       flex-direction: row;
+      min-height: 50vh;
     }
   }
 
@@ -34,7 +33,7 @@ body {
         img {
           opacity: 1;
         }
-  
+
         .box__content {
           transform: none;
           opacity: 1;
@@ -81,7 +80,7 @@ body {
     height: auto;
     opacity: 1;
     transform: translatey(0%);
-    transition: transform 0.4s ease-in-out, opacity 0.15s ease;
+    transition: transform 0.4s ease-in-out;
     transition-delay: 250ms;
     transition-property: opacity;
 
@@ -90,6 +89,5 @@ body {
       opacity: 0;
       transform: translatey(100%);
     }
-
   }
 }
